@@ -6,17 +6,44 @@ Minimal Slideshow plugin in jQuery - Only 1K
 Usage
 -------
 
-	&lt;div id="banner"&gt;
-		&lt;img src="first-image.jpg" class="active" /&gt;
-		&lt;img src="second-image.jpg" /&gt;
-		&lt;img src="third-image.jpg" /&gt;
-	&lt;/div&gt;
+### HTML
+	``` html
+	<div id="banner">
+		<img src="first-image.jpg" class="active" />
+		<img src="second-image.jpg" />
+		<img src="third-image.jpg" />
+	</div>
+	```
 
-	&lt;script&gt;
+## CSS
+	``` css
+	#banner {
+		margin-top:10px;
+		width:640px;
+		height:426px;
+		overflow:hidden;
+	}
+	
+	#banner img {
+		position:absolute;
+	}
+	
+	#banner .active {
+		z-index:9;
+	}
+	
+	#banner .last-active {
+		z-index:8;
+	}
+	```
+
+### Javascript
+	``` javascript
 		$(document).ready(function() {
 			$('#banner').slideshow({
 				'speed':1000, // Fading effect speed
 				'delay':4000 // Delay between slides
 			});
 		});
-	&lt;/script&gt;
+	</script>
+	```
