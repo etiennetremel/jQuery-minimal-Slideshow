@@ -53,11 +53,9 @@
 		},
 		destroy : function( ) {		
 			return this.each(function() {
-				var $this = $(this),
-					data = $this.data('slideshow');
+				var $this = $(this);
 				
 				$(window).unbind('.slideshow');
-				data.fancyBanner.remove();
 				$this.removeData('slideshow');		
 			});
 		}
