@@ -37,8 +37,7 @@
 					data = $this.data('slideshow');
 
 				if(!data) {
-					var settings = $.extend({}, defaults, options),
-						banner = $(this);
+					var settings = $.extend({}, defaults, options);
 
 					$this.data('slideshow', {
 						'speed': settings.speed,
