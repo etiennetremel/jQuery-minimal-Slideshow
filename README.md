@@ -19,6 +19,7 @@ Usage
 		width:640px;
 		height:426px;
 		overflow:hidden;
+		position:relative;
 	}
 	
 	#banner img {
