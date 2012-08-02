@@ -1,7 +1,7 @@
 /*
 	Slideshow plugin using jQuery
 	Plugin created by Etienne TREMEL Mai 2012
-	Version: 0.1
+	Version: 0.2
 	
 	Usage:
 	<div id="banner">
