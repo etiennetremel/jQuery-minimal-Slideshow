@@ -1,7 +1,7 @@
 jQuery-minimal-Slideshow
 ========================
 
-Minimal Slideshow plugin in jQuery - Only 1K
+Minimal Slideshow plugin in jQuery - Only 1.4K
 
 Usage
 -------
@@ -19,6 +19,7 @@ Usage
 		width:640px;
 		height:426px;
 		overflow:hidden;
+		position:relative;
 	}
 	
 	#banner img {
@@ -37,6 +38,13 @@ Usage
 	$(document).ready(function() {
 		$('#banner').slideshow({
 			'speed':1000, // Fading effect speed
-			'delay':4000 // Delay between slides
+			'delay':4000, // Delay between slides
+			'stopOnMouseOver': false //Stop sliding when mouse is over
 		});
 	});
+	
+Log
+-------
+
+### v0.2
+	New parameter added: "stopOnMouseOver" - Stop sliding when mouse is over

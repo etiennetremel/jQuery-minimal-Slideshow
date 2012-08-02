@@ -1,7 +1,7 @@
 /*
 	Slideshow plugin using jQuery
 	Plugin created by Etienne TREMEL Mai 2012
-	Version: 0.1
+	Version: 0.2
 	
 	Usage:
 	<div id="banner">
@@ -14,7 +14,8 @@
 		$(document).ready(function() {
 			$('#banner').slideshow({
 				'speed':1000, // Fading effect speed
-				'delay':4000 // Delay between slides
+				'delay':4000, // Delay between slides
+				'stopOnMouseOver': false //Stop sliding when mouse is over
 			});
 		});
 	</script>
@@ -27,56 +28,68 @@
 (function($){
 	var defaults = {
 		speed: 1000,
-		delay: 4000
+		delay: 4000,
+		stopOnMouseOver: false
 	};
 	
 	var methods = {
 		init : function(options) {
 			return this.each(function() {
 				var $this = $(this),
-					data = $this.data('slideshow');
+					data = $this.data('slideshow'),
+					timeOut;
 
 				if(!data) {
-					var settings = $.extend({}, defaults, options),
-						banner = $(this);
+					var settings = $.extend({}, defaults, options);
 
 					$this.data('slideshow', {
 						'speed': settings.speed,
-						'delay': settings.delay
+						'delay': settings.delay,
+						'stopOnMouseOver': settings.stopOnMouseOver,
+						'timeOut':timeOut
 					});
 				}
-					
-				setTimeout( function() {
+
+				$this.data('slideshow').timeOut = setTimeout( function() {
 					slideSwitch($this);
 				}, $this.data('slideshow').delay);
+				
+				if($this.data('slideshow').stopOnMouseOver) {
+					$this.mouseover(function() {
+						clearTimeout($this.data('slideshow').timeOut);
+					});
+					$this.mouseout(function() {
+						$this.data('slideshow').timeOut = setTimeout( function() {
+							slideSwitch($this);
+						}, $this.data('slideshow').delay);
+					});
+				}
 			});
 		},
 		destroy : function( ) {		
 			return this.each(function() {
-				var $this = $(this),
-					data = $this.data('slideshow');
-				
+				var $this = $(this);
+
 				$(window).unbind('.slideshow');
-				data.fancyBanner.remove();
 				$this.removeData('slideshow');		
 			});
 		}
 	};
-	
+
 	function slideSwitch($this) {
 		var $active = $this.find('img.active');
-	
+
 		if ( $active.length == 0 ) $active = $this.find('img:last');
-	
+
 		var $next =  $active.next().length ? $active.next() : $this.find('img:first');
-	
+
 		$active.addClass('last-active');
-	
+
 		$next.css({opacity: 0})
 			.addClass('active')
 			.animate({opacity: 1}, $this.data('slideshow').speed, function() {
 				$active.removeClass('active last-active');
-				setTimeout( function() {
+				$this.data('slideshow').timeOut = setTimeout( function() {
 					slideSwitch($this);
 				}, $this.data('slideshow').delay);
 			});
