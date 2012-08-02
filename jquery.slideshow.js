@@ -55,11 +55,10 @@
 				}, $this.data('slideshow').delay);
 				
 				if($this.data('slideshow').stopOnMouseOver) {
-					$this.hover(function() {
-						console.log('hover');
+					$this.mouseover(function() {
 						clearTimeout($this.data('slideshow').timeOut);
-					}, function() {
-						console.log('out');
+					});
+					$this.mouseout(function() {
 						$this.data('slideshow').timeOut = setTimeout( function() {
 							slideSwitch($this);
 						}, $this.data('slideshow').delay);
