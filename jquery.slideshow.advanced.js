@@ -1,14 +1,20 @@
 /*
 	Slideshow plugin using jQuery (Advanced version)
 	Plugin created by Etienne TREMEL Mai 2012
-	Version: 0.2
+	Version: 0.3
 	jQuery 1.7 minimun required
+
+	The advanced version include navigation system and another way to define slides
 	
 	Usage:
 	<div id="banner">
-		<img src="first-image.jpg" class="active" />
-		<img src="second-image.jpg" />
-		<img src="third-image.jpg" />
+		<div class="item active"><img src="first-image.jpg" /></div>
+		<div class="item"><a href="http://www.google.com" target="_blank"><img src="second-image.jpg" /></a></div>
+		<div class="item">
+			<h1>Slide title</h1>
+			<p>Some content here</p>
+			<p>Some content here</p>
+		</div>
 	</div>
 	
 	<script>
@@ -16,7 +22,7 @@
 			$('#banner').slideshow({
 				'speed':1000, // Fading effect speed
 				'delay':4000, // Delay between slides
-				'stopOnMouseOver': false, //Stop sliding when mouse is over
+				'stopOnMouseOver': true, //Stop sliding when mouse is over
 				'navigation': true // Add navigation
 			});
 		});
@@ -71,7 +77,7 @@
 				
 				if($this.data('slideshow').navigation) {
 					var navigation = $('<ul class="navigation" />');
-					$this.find('img').each(function(index, item) {
+					$this.find('.item').each(function(index, item) {
 						var active = (index) ? '' : 'active';
 						navigation.append('<li class="' + active + '"></li>');
 					});
@@ -98,14 +104,14 @@
 		clearTimeout($this.data('slideshow').timeOut);
 		$this.data('slideshow').isPlaying = true;
 
-		var $active = $this.find('img.active'),
+		var $active = $this.find('.item.active'),
 			$next;
-		if ($active.length==0) $active = $this.find('img:last');
+		if ($active.length==0) $active = $this.find('.item:last');
 		
 		if($.isNumeric(index) && index != $active.index()) {
-			$next =  $this.find('img:eq(' + index + ')');
+			$next =  $this.find('.item:eq(' + index + ')');
 		} else {
-			$next =  $active.next('img').length ? $active.next('img') : $this.find('img:first');
+			$next =  $active.next('.item').length ? $active.next('.item') : $this.find('.item:first');
 		}
 
 		$active.addClass('last-active');

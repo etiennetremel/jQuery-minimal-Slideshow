@@ -2,6 +2,8 @@
 	Slideshow plugin using jQuery
 	Plugin created by Etienne TREMEL Mai 2012
 	Version: 0.2
+
+	Use the advanced version of Slideshow to display navigation and use content in slides (not just images)
 	
 	Usage:
 	<div id="banner">

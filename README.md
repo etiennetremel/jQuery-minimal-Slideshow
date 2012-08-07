@@ -2,6 +2,7 @@ jQuery-minimal-Slideshow
 ========================
 
 Minimal Slideshow plugin in jQuery - Only 1.4K
+Use the advanced version of Slideshow to display navigation and use content in slides (not just images). See Javascript and example for details.
 
 Usage
 -------
@@ -45,6 +46,11 @@ Usage
 	
 Log
 -------
+
+### v0.3 (Advanced version)
+	Advanced version added with more features, but file bigger
+	New parameter added: "navigation" - Use navigation
+	Usage changed: div used instead of image tag
 
 ### v0.2
 	New parameter added: "stopOnMouseOver" - Stop sliding when mouse is over
